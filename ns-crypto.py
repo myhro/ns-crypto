@@ -46,14 +46,12 @@ class Message():
         self.message = text
 
     def decrypt(self, key):
-        last_char = len(self.message) % self.len_alphabet
-        alphabet = self.alphabet[last_char:] + self.alphabet[:last_char]
         steps = itertools.cycle(key.get_key())
         plain_chars = []
         for c in self.message:
-            crypt_position = alphabet.index(c)
+            crypt_position = self.alphabet.index(c)
             plain_position = (crypt_position - steps.next()) % self.len_alphabet
-            plain_chars.append(alphabet[plain_position])
+            plain_chars.append(self.alphabet[plain_position])
         checksum = ''.join(plain_chars[-32:])
         text = ''.join(plain_chars[:-32])
         if hashlib.md5(text).hexdigest() == checksum:

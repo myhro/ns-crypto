@@ -70,6 +70,7 @@ class Message():
             crypt_position = (plain_position + steps.next()) % self.len_alphabet
             encrypted_chars.append(self.alphabet[crypt_position])
         self.message = ''.join(encrypted_chars)
+        return self.message
 
     def text(self):
         return self.message
@@ -81,19 +82,15 @@ def main():
     msg = Message('The book is on the table.')
 
     print msg.text()
-    msg.encrypt(key=enc_key)
-    print msg.text()
-    msg.decrypt(key=enc_key)
-    print msg.text()
+    print msg.encrypt(key=enc_key)
+    print msg.decrypt(key=enc_key)
 
     print '-'
 
     print msg.text()
-    msg.encrypt(key=enc_key)
-    print msg.text()
+    print msg.encrypt(key=enc_key)
     tmp_key = Key()
-    msg.decrypt(key=tmp_key)
-    print msg.text()
+    print msg.decrypt(key=tmp_key)
 
 if __name__ == '__main__':
     main()

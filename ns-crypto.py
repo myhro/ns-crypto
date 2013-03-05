@@ -24,7 +24,7 @@ class Key():
         return self.key
 
     def new(self):
-        self.key = [random.randint(1, 2 ** 16) for i in xrange(64)]
+        self.key = [random.randint(1, 94) for i in xrange(64)]
         self.b64key = base64.b64encode(zlib.compress(json.dumps(self.key)))
 
     def load(self):
